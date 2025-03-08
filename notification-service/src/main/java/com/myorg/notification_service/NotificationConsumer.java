@@ -10,7 +10,6 @@ public class NotificationConsumer {
 
     @Bean
     public Consumer<OrderEvent> orderConsumer(){
-        System.out.println("In Notification service");
         return orderEvent -> {
             System.out.println("Notification received for customer id: "+ orderEvent.getCustomerId() +" : "
                     + orderEvent.getStatus());
