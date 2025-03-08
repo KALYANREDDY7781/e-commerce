@@ -14,8 +14,8 @@ public class OrderPublisher {
         this.streamBridge = streamBridge;
     }
 
-    public void sendOrderEvent(OrderEvent orderEvent){
-        streamBridge.send("orderPublisher-out-0",orderEvent);
+    public void publishOrderEvent(OrderEvent orderEvent){
+        streamBridge.send("orderCreated-out-0",orderEvent);
         System.out.println("Order event sent: "+orderEvent.getCustomerId());
     }
 }

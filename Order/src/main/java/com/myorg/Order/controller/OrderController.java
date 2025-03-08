@@ -42,7 +42,7 @@ public class OrderController {
     public ResponseEntity<OrdersDto> createOrder(@Valid @RequestBody OrderRequestDto order){
         OrdersDto placedOrder = orderService.placeOrder(order.getOrdersDto(),order.getPaymentDTO());
         OrderEvent event = new OrderEvent(placedOrder.getCustomerId(),"PLACED","Order is placed");
-        orderPublisher.sendOrderEvent(event);
+        orderPublisher.publishOrderEvent(event);
         return ResponseEntity.status(HttpStatus.CREATED).body(placedOrder);
     }
 
