@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: payments-service
+  config:
+    import: optional:configserver:http://localhost:8888
+  profiles:
+    active: dev
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/payment_db
+#    username: springstudent
+#    password: springstudent
+#
+#server:
+#  port: 8083
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    shutdown:
+#      access: unrestricted
+#  info:
+#    env:
+#      enabled: true
+#
+#info:
+#  app:
+#    name: "Payments"
+#    description: "Payments Microservice"
+#    version: "1.0"

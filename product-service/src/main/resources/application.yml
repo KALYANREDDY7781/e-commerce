@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: product-service
+  config:
+    import: optional:configserver:http://localhost:8888/
+  profiles:
+    active: dev
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/product_db
+#    username: springstudent
+#    password: springstudent
+#
+#server:
+#  port: 8081
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#
+#info:
+#  app:
+#    name: "product-service"
+#    description: "Product microservice"
+#    version: "1.0"
+#
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    shutdown:
+#      access: unrestricted
+#  info:
+#    env:
+#      enabled: true

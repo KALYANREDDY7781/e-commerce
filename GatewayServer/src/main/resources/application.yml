@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: GatewayServer
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: "http://localhost:7080/realms/master/protocol/openid-connect/certs"
+  cloud:
+    gateway:
+      routes:
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/myorg/orders/**
+          filters:
+            - RewritePath=/myorg/orders(?<segment>/.*)?, /orders$\{segment}
+        - id: payments-service
+          uri: lb://PAYMENTS-SERVICE
+          predicates:
+            - Path=/myorg/payments/**
+          filters:
+            - RewritePath=/myorg/payments(?<segment>.*), /payments$\{segment}
+        - id: product-service
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/products/**
+          filters:
+            - RewritePath=/myorg/products(?<segment>.*), /products$\{segment}
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      prefer-ip-address: true
+
+
